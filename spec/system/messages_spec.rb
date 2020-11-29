@@ -1,3 +1,4 @@
+	
 require 'rails_helper'
 
 RSpec.describe "メッセージ投稿機能", type: :system do
@@ -18,8 +19,9 @@ RSpec.describe "メッセージ投稿機能", type: :system do
       expect {
         find('input[name="commit"]').click
       }.not_to change { Message.count }
+
       # 元のページに戻ってくることを確認する
-      expect(current_path).to eq room_messages_path(@room_user.room)
+      expect(current_path).to eq  room_messages_path(@room_user.room)
     end
   end
 
@@ -31,6 +33,7 @@ RSpec.describe "メッセージ投稿機能", type: :system do
       # 作成されたチャットルームへ遷移する
       click_on(@room_user.room.name)
 
+      # 値をテキストフォームに入力する
       post = "テスト"
       fill_in 'message_content', with: post
 
